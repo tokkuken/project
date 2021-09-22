@@ -1,0 +1,29 @@
+<meta name="viewport"
+   content="width=320,
+      height=480,
+      initial-scale=1.0,
+      minimum-scale=1.0,
+      maximum-scale=2.0,
+      user-scalable=yes" />
+      
+<h1>アカウント登録画面</h1>
+<form method="post" action = "/signup">
+    {% csrf_token %}
+    <p>ニックネーム</p>
+    <input type = "textbox" value = ""name = 'username'>
+    <br>
+    <p>パスワード</p>
+    <input type = "password" value = "" name = "password">
+    <br>
+    <p>参加クラス</p>
+    <td class = "table">
+        <input class ="radio" type="radio" name="class" value="1" required>ゆるふわ
+        <input class ="radio" type="radio" name="class" value="2" required>ゴリラ
+    </td>
+    <h3>クラス説明</h3>
+    <td class = "table">
+        <p>ゆるふわ：正解で1点、不正解で0点</p>
+        <p>ゴリラ：正解で2点、不正解で-2点</p>
+    </td>
+    <input type = "submit" id = "botton" name = "botton" value = "送信">
+</form>

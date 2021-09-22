@@ -1,0 +1,24 @@
+<meta name="viewport"
+   content="width=320,
+      height=480,
+      initial-scale=1.0,
+      minimum-scale=1.0,
+      maximum-scale=2.0,
+      user-scalable=yes" />
+
+
+<h1>ログイン画面</h1>
+<p>{{message}}</p>
+<form method="post" action = "/">
+    {% csrf_token %}
+    <p>ニックネーム</p>
+    <input type = "textbox" value = ""name = 'username'>
+    <br>
+    <p>パスワード</p>
+    <input type = "password" value = "" name = "password">
+    <br>
+    <br>
+    <input type = "submit" id = "botton" name = "botton" value = "ログイン">
+</form>
+<p>パスワードを忘れた場合は徳地まで</p>
+<p>未登録の場合はまず<a href= "/signup">アカウント登録</a> </p>

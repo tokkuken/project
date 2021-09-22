@@ -1,0 +1,51 @@
+<meta name="viewport"
+   content="width=320,
+      height=480,
+      initial-scale=1.0,
+      minimum-scale=1.0,
+      maximum-scale=2.0,
+      user-scalable=yes" />
+
+
+<h1>第２回クイズ大会　管理者ページ</h1>
+<style>
+    .radio{
+        transform:scale(2.0);
+        margin-left:20px;
+        margin-right:10px;        
+    }
+    .table{
+        font-size:150%;
+    }
+    .box{
+        font-size: 20px;
+    }
+</style>
+
+{% if st == 0 %}
+<p>回答受付中</p>
+{% else %}
+<p>回答締め切り</p>
+{% endif %}
+
+<h2>現在の問題の正解： {{answer}}</h2>
+<button id = "button" type="button" onclick="location.href='/start'">回答開始</button> 
+<button id = "button" type="button" onclick="location.href='/stop'">回答終了</button>
+
+
+<form method="post" action = "/master">
+    {% csrf_token %}
+    <p>正解（集計前にポチること）</p>
+    <td class = "table">
+        <input class ="radio" type="radio" name="answer" value="1" required><label style="font-size:150%;">1</label>
+        <input class ="radio" type="radio" name="answer" value="2" required><label style="font-size:150%;">2</label>
+        <input class ="radio" type="radio" name="answer" value="3" required><label style="font-size:150%;">3</label>
+        <input class ="radio" type="radio" name="answer" value="4" required><label style="font-size:150%;">4</label>
+    </td>
+    <input class = "box" type = "submit" id = "botton" name = "botton" value = "送信">
+</form>
+
+<button class = "box" type="button" onclick="location.href='/answer'">回答</button> 
+<br>
+<br>
+<button class = "box" type="button" onclick="location.href='/scorelist'">スコア</button> 

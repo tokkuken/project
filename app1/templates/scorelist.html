@@ -1,0 +1,19 @@
+
+{% for user in users %}
+{% if user.username != "admin" %}
+<div style="display:inline-block; width:20%;">
+    <div style="height:100;vertical-align:center;border: 1px solid #333333;">
+        <div style ="text-align:center;padding-top:10%;">
+                <h3>{{user.score}}</h3>
+        </div>
+    </div>
+    {% if user.course == 1 %}
+        <div><p style = "text-align:center;border: 1px solid #333333;margin-top:0;">{{user.username}} (ゆるふわ）</p></div>
+    {% else %}
+        <div><p style = "text-align:center;border: 1px solid #333333;margin-top:0;">{{user.username}} （ゴリラ）</p></div>
+    {% endif %}
+</div>
+{% endif %}
+{% endfor %}
+<br>
+<br>

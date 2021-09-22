@@ -1,0 +1,31 @@
+<button id = "button" type="button" onclick="check()">回答チェック</button>
+<br>
+<br>
+{% for user in users %}
+{% if user.username != "admin"  %}
+<div style="display:inline-block; width:20%;">
+    <div style="height:100;vertical-align:center;border: 1px solid #333333;" class = "answer_{{user.answer}} answer">
+        <div style ="text-align:center;padding-top:10%;">
+            <h3>{{user.answer}}</h3>
+        </div>
+    </div>
+    <div><p style = "text-align:center;border: 1px solid #333333;margin-top:0;">{{user.username}}</p></div>
+</div>
+{% endif %}
+{% endfor %}
+<br>
+<br>
+<a href = "/score">スコア更新</a>
+
+<script type = "text/javascript">
+    function check() {
+        var elem = document.getElementsByClassName("answer");
+        for(let i = 0; i < elem.length; i++){
+            elem[i].style.backgroundColor = 'blue';
+        }
+        elem = document.getElementsByClassName("answer_{{answer}}")
+        for(let i = 0; i < elem.length; i++){
+            elem[i].style.backgroundColor = 'red';
+        }
+    }
+</script>

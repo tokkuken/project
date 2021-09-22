@@ -1,0 +1,39 @@
+<meta name="viewport"
+   content="width=320,
+      height=480,
+      initial-scale=1.0,
+      minimum-scale=1.0,
+      maximum-scale=2.0,
+      user-scalable=yes" />
+
+
+<h1>第２回クイズ大会</h1>
+<style>
+    .radio{
+        transform:scale(2.0);
+        margin-left:20px;
+        margin-right:10px;        
+    }
+    .table{
+        font-size:150%;
+    }
+    .box{
+        font-size: 20px;
+    }
+</style>
+<form method="post" action = "/post">
+    {% csrf_token %}
+    <p>ニックネーム</p>
+    <input class = "box" type = "textbox" value = "{{ username }}"name = 'username' disabled>
+    <br>
+    <p>回答記入欄</p>
+    <td class = "table">
+        <input class ="radio" type="radio" name="answer" value="1" required><label style="font-size:150%;">1</label>
+        <input class ="radio" type="radio" name="answer" value="2" required><label style="font-size:150%;">2</label>
+        <input class ="radio" type="radio" name="answer" value="3" required><label style="font-size:150%;">3</label>
+        <input class ="radio" type="radio" name="answer" value="4" required><label style="font-size:150%;">4</label>
+    </td>
+    <br>
+    <br>
+    <input class = "box" type = "submit" id = "botton" name = "botton" value = "送信">
+</form>
