@@ -38,7 +38,7 @@ def signup(request):
         password = request.POST.get("password")
         cla_ss = request.POST.get("class")
         request.session['username'] = loginuser
-        me = database.objects.create(username = loginuser, password = password , answer = "0", score = "0", cla_ss = cla_ss)
+        me = database.objects.create(username = loginuser, password = password , answer = "0", score = "0", course = cla_ss)
         param = {"username":loginuser,'st':st}
         return render(request,'vote.html',param)
 
