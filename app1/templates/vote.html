@@ -8,6 +8,13 @@
 
 
 <h1>第２回クイズ大会</h1>
+
+{% if st == 0 %}
+<p>回答受付中</p>
+{% else %}
+<h3><font color="red">回答は締め切られています</font></h3>
+{% endif %}
+
 <style>
     .radio{
         transform:scale(2.0);
@@ -21,6 +28,8 @@
         font-size: 20px;
     }
 </style>
+<h2>現在選択した回答：{{ answer }} </h2>
+<h2>現在のスコア：{{ score }}</h2>
 <form method="post" action = "/post">
     {% csrf_token %}
     <p>ニックネーム</p>
