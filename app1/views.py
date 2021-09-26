@@ -8,7 +8,11 @@ ans = 1
 def index(request):
     if request.method == "GET":
         try:
-            param = {"username":request.session['username'],'st':st}
+            loginuser = request.session['username']
+            target = database.objects.get(username = loginuser)
+            ans = target.answer
+            sco = target.score
+            param = {"username":loginuser,'st':st,"answer":ans,"score":sco}
             return render(request,'vote.html',param)
         except:
             message = {"message":""}
@@ -20,7 +24,10 @@ def index(request):
         if database.objects.filter(username=loginuser).exists():
             target = database.objects.get(username = loginuser)
             if password == target.password:
-                param = {"username":loginuser,'st':st}
+                target = database.objects.get(username = loginuser)
+                ans = target.answer
+                sco = target.score
+                param = {"username":loginuser,'st':st,"answer":ans,"score":sco}
                 request.session['username'] = loginuser
                 return render(request,'vote.html',param)
             else:
@@ -39,21 +46,30 @@ def signup(request):
         cla_ss = request.POST.get("class")
         request.session['username'] = loginuser
         me = database.objects.create(username = loginuser, password = password , answer = "0", score = "0", course = cla_ss)
-        param = {"username":loginuser,'st':st}
+        param = {"username":loginuser,'st':st,"socre":0,"answer":0}
         return render(request,'vote.html',param)
 
 
 def post(request):
+    global st
     if st == 0:
         answer = request.POST.get('answer')
         loginuser = request.session['username']
         target = database.objects.get(username = loginuser)
         target.answer = answer   
         target.save()
-        param = {"username":loginuser,'st':st}
+        target = database.objects.get(username = loginuser)
+        ans = target.answer
+        sco = target.score
+        param = {"username":loginuser,'st':st,"answer":ans,"score":sco}
         return render(request,'vote.html',param)
     else:
-        return HttpResponse("回答は締め切られています")
+        loginuser = request.session['username']
+        target = database.objects.get(username = loginuser)
+        ans = target.answer
+        sco = target.score
+        param = {"username":loginuser,'st':st,"answer":ans,"score":sco}
+        return render(request,'vote.html',param)
 
 def answer(request):
     global ans
